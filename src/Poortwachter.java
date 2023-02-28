@@ -22,13 +22,18 @@ public class Poortwachter {
         hmConverter.put(8, "acht");
         hmConverter.put(9, "negen");
         hmConverter.put(10, "tien");
-        int guesses = 3;
         boolean key = true;
+        int guesses = 3;
         while (key) {
-            System.out.println("Hi, ik ben de Poortwachter. Om door te kunnen gaan moet je het volgende raadseltje oplossen. Als ik twee zeg dan zeg jij 4, als ik negen zeg dan zeg jij 5. Wat zeg jij bij het volgende getal?: ");
-            System.out.println(hmConverter.get(randomNumber));
+            startGame(hmConverter, randomNumber);
             key = (tryAgain(hmConverter, key, randomNumber, guesses));
         }
+
+    }
+
+    public static void startGame(HashMap<Integer, String> name, int randomNumber){
+        System.out.println("Hi, ik ben de Poortwachter. Om door te kunnen gaan moet je het volgende raadseltje oplossen. Als ik twee zeg dan zeg jij 4, als ik negen zeg dan zeg jij 5. Wat zeg jij bij het volgende getal?: ");
+        System.out.println(name.get(randomNumber));
     }
 
     public static boolean tryAgain(HashMap<Integer, String> name, boolean sleutel, int randomNumber, int guesses) {
@@ -42,14 +47,20 @@ public class Poortwachter {
             sleutel = false;
         } else {
             System.out.println("Helaas! Het antwoord is niet correct. Je hebt nog " + guesses + " pogingen");
-            System.out.println("Probeer het nog een keer");
-            tryAgain(name, sleutel, randomNumber, guesses);
             if (guesses == 0) {
                 System.out.println("Helaas je pogingen zijn op. Je mag niet naar binnen. De poort gaat nu sluiten!");
-                sleutel = false;
+                vaarwel();
+//                sleutel = false;
+            }else {
+                System.out.println("Probeer het nog een keer");
+                tryAgain(name, sleutel, randomNumber, guesses);
             }
+
         }
         return sleutel;
+    }
 
+    public static void vaarwel(){
+        System.out.println("Have a nice day!");
     }
 }
