@@ -13,12 +13,10 @@ public class Bonus {
 
     public static HashSet<Integer> randomNumberGenerator(){
         Random random = new Random();
-        int ranNum = random.nextInt(6)+1;
         HashSet<Integer> ranNums = new HashSet<>();
-        int key = 0;
-        while (key < 4){
+        while (ranNums.size() < 4){
+            int ranNum = random.nextInt(9)+1;
             ranNums.add(ranNum);
-            key++;
         }
         return ranNums;
     }
@@ -36,8 +34,9 @@ public class Bonus {
      */
     public static void feedback(String stringnumber) {
         while(true) {
-            Scanner scanner = new Scanner(System.in);
-            StringBuilder feedback = new StringBuilder();
+        Scanner scanner = new Scanner(System.in);
+        StringBuilder feedback = new StringBuilder();
+
             System.out.println("take a guess");
             String guess = scanner.nextLine();
             if (Objects.equals(guess, stringnumber)) {
